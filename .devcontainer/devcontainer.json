@@ -21,7 +21,8 @@
   "workspaceFolder": "/workspace",
 
   "settings": {
-    "terminal.integrated.defaultProfile.linux": "zsh"
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "remote.containers.copyGitConfig": true
   },
 
   "extensions": [
