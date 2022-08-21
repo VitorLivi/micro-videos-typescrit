@@ -22,11 +22,11 @@ export class Category extends Entity<CategoryProperties> {
   }
 
   activate() {
-    this.is_active = true;
+    this.props.is_active = true;
   }
 
   deactivate() {
-    this.is_active = false;
+    this.props.is_active = false;
   }
 
   get name() {
