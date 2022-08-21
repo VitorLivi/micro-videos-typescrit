@@ -67,7 +67,7 @@ describe("Category Unit Tests", () => {
     data.forEach((element) => {
       const category = new Category(element.props, element.id);
       expect(category.id).not.toBeNull();
-      expect(category.id).toBeInstanceOf(UniqueEntityId);
+      expect(category.uniqueEntityId).toBeInstanceOf(UniqueEntityId);
     });
   });
 
@@ -124,5 +124,26 @@ describe("Category Unit Tests", () => {
       created_at,
     });
     expect(category.created_at).toBe(created_at);
+  });
+
+  test("update method", () => {
+    const category = new Category({ name: "Movie" });
+    category.update("Movie 2", "some description");
+    expect(category.props).toMatchObject({
+      name: "Movie 2",
+      description: "some description",
+    });
+  });
+
+  test("deactivate method", () => {
+    const category = new Category({ name: "Movie" });
+    category.deactivate();
+    expect(category.is_active).toBeFalsy();
+  });
+
+  test("activate method", () => {
+    const category = new Category({ name: "Movie", is_active: false });
+    category.activate();
+    expect(category.is_active).toBeTruthy();
   });
 });
