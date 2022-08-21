@@ -36,12 +36,16 @@ export class Category extends Entity<CategoryProperties> {
     this.props.is_active = value ?? true;
   }
 
+  private set name(value: string) {
+    this.props.name = value;
+  }
+
   get created_at() {
     return this.props.created_at;
   }
 
   public update(name: string, description: string) {
-    this.props.name = name;
+    this.name = name;
     this.description = description;
   }
 
