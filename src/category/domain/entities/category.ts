@@ -1,5 +1,7 @@
 import UniqueEntityId from "../../../shared/domain/value-objects/unique-entity-id.vo";
 import Entity from "../../../shared/entity/entity";
+import CategoryValidatorFactory from '../validators/category.validator';
+import { EntityValidationError } from '../../../shared/domain/errors/validation-error';
 
 export type CategoryProperties = {
   name: string;
@@ -10,6 +12,7 @@ export type CategoryProperties = {
 
 export class Category extends Entity<CategoryProperties> {
   constructor(public readonly props: CategoryProperties, id?: UniqueEntityId) {
+    Category.validate(props);
     super(props, id);
     this.description = this.props.description;
     this.props.is_active = this.props.is_active ?? true;
@@ -17,8 +20,18 @@ export class Category extends Entity<CategoryProperties> {
   }
 
   update(name: string, description: string) {
+    Category.validate({ name, description });
     this.name = name;
     this.description = description;
+  }
+
+  static validate(props: CategoryProperties) {
+    const validator = CategoryValidatorFactory.create();
+    const isValid = validator.validate(props);
+
+    if (!isValid){
+      throw new EntityValidationError(validator.errors);
+    }
   }
 
   activate() {

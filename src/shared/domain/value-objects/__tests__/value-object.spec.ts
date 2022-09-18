@@ -1,5 +1,5 @@
 import ValueObject from "../value-object";
-import { deepFreeze } from "../../../utils/object";
+import { deepFreeze } from "../../utils/object";
 class Stub extends ValueObject {}
 
 describe("ValueObject Unit Tests", () => {
