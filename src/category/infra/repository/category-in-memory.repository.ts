@@ -2,6 +2,19 @@ import { InMemorySearchableRepository } from "../../../shared/domain/repository/
 import { Category } from "../../domain/entities/category";
 import CategoryRepository from "../../domain/repository/category.repository";
 
-class CategoryInMemoryRepository
-  extends InMemorySearchableRepository<Category>
-  implements CategoryRepository {}
+export default class CategoryInMemoryRepository
+extends InMemorySearchableRepository<Category>
+implements CategoryRepository.Repository {
+  protected async applyFilter(
+    items: Category[],
+    filter: CategoryRepository.Filter
+  ): Promise<Category[]> {
+    if (!filter) {
+      return items;
+    }
+
+    return items.filter((i) => {
+      return i.name.toLowerCase().includes(filter.toLowerCase());
+    });
+  }
+}
