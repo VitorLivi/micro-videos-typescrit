@@ -1,6 +1,7 @@
 import UseCase from "../../../shared/application/use-case";
 import CategoryRepository from "../../domain/repository/category.repository";
-import { CategoryOutput } from "../dto/category-output.dto";
+import {CategoryOutputMapper} from "../dto/category-output";
+import { CategoryOutput } from "../dto/category-output";
 
 export default class GetCategoryUseCase implements UseCase<Input, Output>{
 
@@ -9,13 +10,7 @@ export default class GetCategoryUseCase implements UseCase<Input, Output>{
   async execute(input: Input): Promise<Output> {
     const entity = await this.categoryRepo.findById(input.id);
 
-    return {
-      id: entity.id,
-      name: entity.name,
-      description: entity.description,
-      is_active: entity.is_active,
-      created_at: entity.created_at
-    }
+    return CategoryOutputMapper.toOutput(entity);
   }
 }
 
