@@ -1,6 +1,6 @@
 import UseCase from "../../../shared/application/use-case";
-import CategoryRepository from "../../domain/repository/category.repository";
-import {CategoryOutputMapper} from "../dto/category-output";
+import { CategoryRepository } from "../../domain/repository/category.repository";
+import { CategoryOutputMapper } from "../dto/category-output";
 import { CategoryOutput } from "../dto/category-output";
 
 export default class GetCategoryUseCase implements UseCase<Input, Output>{
