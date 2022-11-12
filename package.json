@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "ts-node": "ts-node",
-    "tsc": "tsc",
-    "test": "jest"
+    "tsc": "tsc --noEmit",
+    "clean:tsc": "rm tsconfig.tsbuildinfo",
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
