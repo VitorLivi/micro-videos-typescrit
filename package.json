@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "description": "admin do catálogo de vídeos",
   "main": "index.js",
+  "imports": {
+    "#shared/*": "./dist/shared/*.js",
+    "#categiry/*": "./dist/category/*.js"
+  },
   "scripts": {
     "ts-node": "ts-node",
     "tsc": "tsc",
     "tsc:check": "npm run tsc -- --noEmit",
     "clean:tsc": "rm tsconfig.tsbuildinfo",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "cti": "cti",
+    "cti:@core": "sh ./cti.sh"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +28,7 @@
     "@types/lodash": "^4.14.182",
     "@types/node": "^16.11.7",
     "@types/uuid": "^8.3.4",
+    "create-ts-index": "^1.14.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.1",
     "jest": "^28.1.3",

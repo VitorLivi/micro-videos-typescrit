@@ -13,7 +13,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     vim \
     npm
 
-RUN npm i -g npx yarn
+RUN npm i -g npx yarn @nestjs/cli@8.2.5
 
 RUN useradd -m node && \
     usermod -aG sudo node && \
