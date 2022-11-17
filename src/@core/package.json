@@ -1,5 +1,5 @@
 {
-  "name": "micro-videos",
+  "name": "@fc/micro-videos",
   "version": "1.0.0",
   "description": "admin do catálogo de vídeos",
   "main": "index.js",

@@ -10,10 +10,9 @@ RUN mkdir -p /usr/share/man/man1 && \
     wget \
     fonts-powerline \
     nodejs \
-    vim \
-    npm
+    vim
 
-RUN npm i -g npx yarn @nestjs/cli@8.2.5
+RUN npm i -g npx yarn @nestjs/cli@8.2.5 npm@8.15.0
 
 RUN useradd -m node && \
     usermod -aG sudo node && \

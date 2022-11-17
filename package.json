@@ -1,12 +1,16 @@
 {
-  "name": "micro-videos",
-  "version": "1.0.0",
+  "name": "micro-videos-typescript",
+  "version": "0.0.1",
   "description": "admin do catálogo de vídeos",
   "main": "index.js",
   "scripts": {
   },
   "author": "",
   "license": "ISC",
+  "workspaces": [
+    "./src/@core",
+    "./src/nestjs"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
