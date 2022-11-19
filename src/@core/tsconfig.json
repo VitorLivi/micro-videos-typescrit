@@ -1,18 +1,7 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "incremental": true,
-    "target": "es2017",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "module": "commonjs",
     "baseUrl": "./src",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": false,
-    "strictNullChecks": false,
-    "skipLibCheck": true,
     "paths": {
       "#shared/*": [
         "./shared/*"
@@ -21,7 +10,7 @@
         "./category/*"
       ]
     },
-    "declaration": true,
+    "outDir": "./dist"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["./src"]
 }

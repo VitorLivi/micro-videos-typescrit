@@ -7,10 +7,19 @@
     "#shared/*": "./dist/shared/*.js",
     "#categiry/*": "./dist/category/*.js"
   },
+  "exports": {
+   "./shared/application": "./dist/shared/application/index.js",
+   "./shared/domain": "./dist/shared/domain/index.js",
+   "./category/application": "./dist/category/application/index.js",
+   "./category/domain": "./dist/category/domain/index.js",
+   "./category/infra": "./dist/category/infra/index.js"
+  },
   "scripts": {
     "ts-node": "ts-node",
     "tsc": "tsc",
     "tsc:check": "npm run tsc -- --noEmit",
+    "build": "tsc -b ./tsconfig.json",
+    "build:watch": "tsc -b ./tsconfig.json --watch",
     "clean:tsc": "rm tsconfig.tsbuildinfo",
     "test": "jest",
     "test:cov": "jest --coverage",
