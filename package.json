@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prestart:dev": "npm run build -w @fc/micro-videos",
-    "start:dev": "npm run build:watch -w @fc/micro-videos & start:dev -w nestjs"
+    "start:dev": "npm run build:watch -w @fc/micro-videos & start:dev -w nestjs",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
