@@ -8,7 +8,8 @@ RUN apk add --no-cache git \
     wget \
     nodejs \
     neovim \
-    npm
+    npm \
+    procps
 
 RUN npm i -g npx yarn @nestjs/cli@8.2.5 npm@8.15.0
 
