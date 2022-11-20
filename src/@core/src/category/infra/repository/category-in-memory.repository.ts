@@ -3,7 +3,7 @@ import { InMemorySearchableRepository } from "#shared/domain/repository/in-memor
 import { Category } from "#category/domain/entities/category";
 import { CategoryRepository } from "#category/domain/repository/category.repository";
 
-export default class CategoryInMemoryRepository
+export  class CategoryInMemoryRepository
 extends InMemorySearchableRepository<Category>
 implements CategoryRepository.Repository {
   sortableFields: string[] = ["name", "created_at"];

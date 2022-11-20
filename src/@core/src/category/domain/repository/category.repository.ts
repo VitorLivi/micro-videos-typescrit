@@ -26,5 +26,3 @@ export namespace CategoryRepository {
 
   }
 }
-
-export default CategoryRepository;

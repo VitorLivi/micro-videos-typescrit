@@ -1,6 +1,6 @@
 import { InMemoryRepository } from "../in-memory.repository";
-import Entity from "../../../entity/entity";
-import UniqueEntityId from "../../value-objects/unique-entity-id.vo";
+import { Entity } from "../../../entity/entity";
+import { UniqueEntityId } from "../../value-objects/unique-entity-id.vo";
 
 type StubEntityProps = {
   name: string;

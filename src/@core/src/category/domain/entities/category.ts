@@ -1,7 +1,7 @@
-import UniqueEntityId from "../../../shared/domain/value-objects/unique-entity-id.vo";
-import Entity from "../../../shared/entity/entity";
-import CategoryValidatorFactory from '../validators/category.validator';
+import { UniqueEntityId } from "../../../shared/domain/value-objects/unique-entity-id.vo";
+import { Entity } from "../../../shared/entity/entity";
 import { EntityValidationError } from '../../../shared/domain/errors/validation-error';
+import { CategoryValidatorFactory } from "../validators/category.validators";
 
 export type CategoryProperties = {
   name: string;

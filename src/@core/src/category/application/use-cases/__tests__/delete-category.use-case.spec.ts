@@ -1,15 +1,15 @@
 import { Category } from "../../../domain/entities/category";
-import CategoryInMemoryRepository from "../../../infra/repository/category-in-memory.repository";
-import NotFoundError from "../../../../shared/domain/errors/not-found.error";
-import DeleteCategoryUseCase from "../delete-category.use-case";
+import { CategoryInMemoryRepository } from "../../../infra/repository/category-in-memory.repository";
+import { NotFoundError } from "../../../../shared/domain/errors/not-found.error";
+import { DeleteCategoryUseCase } from "../delete-category.use-case";
 
 describe ("DeleteCategoryUseCase Unit Tests", () => {
-  let useCase: DeleteCategoryUseCase;
+  let useCase: DeleteCategoryUseCase.UseCase;
   let repository: CategoryInMemoryRepository;
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository();
-    useCase = new DeleteCategoryUseCase(repository);
+    useCase = new DeleteCategoryUseCase.UseCase(repository);
   });
 
 

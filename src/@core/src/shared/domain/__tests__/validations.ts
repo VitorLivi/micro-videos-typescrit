@@ -1,8 +1,8 @@
 
-import ClassValidatorFields from "../validators/class-validator-fields";
+import { ClassValidatorFields } from "../validators/class-validator-fields";
 import { FieldsErrors } from "../validators/validator-fields-interface";
-import expect from "expect";
 import { EntityValidationError } from "../errors/validation-error";
+import expect from "expect";
 
 type Expected =
   | { validator: ClassValidatorFields<any>; data: any }
