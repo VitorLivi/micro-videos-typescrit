@@ -22,7 +22,7 @@
 
   "settings": {
     "terminal.integrated.defaultProfile.linux": "zsh",
-    "remote.containers.copyGitConfig": true
+    "dev.containers.copyGitConfig": true
   },
 
   "extensions": [

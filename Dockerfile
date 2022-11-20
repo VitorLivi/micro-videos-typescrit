@@ -1,21 +1,18 @@
-FROM ubuntu:22.10
+FROM alpine:3.16.3
 
-RUN mkdir -p /usr/share/man/man1 && \
-    apt-get update && apt install -y \
-    git \
+RUN apk add --no-cache git \
     ca-certificates \
-    openjdk-11-jdk \
+    openjdk11 \
     zsh \
     curl \
     wget \
-    fonts-powerline \
     nodejs \
-    vim
+    neovim \
+    npm
 
 RUN npm i -g npx yarn @nestjs/cli@8.2.5 npm@8.15.0
 
-RUN useradd -m node && \
-    usermod -aG sudo node && \
+RUN adduser -D -u 1000 -s /bin/zsh -G root -h /home/node node && \
     echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER node
@@ -34,4 +31,4 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 RUN echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> ~/.zshrc && \
     echo 'HISTFILE=/home/node/zsh/.zsh_history' >> ~/.zshrc
 
-CMD ["sh", "-c", "npm install && tail -f /dev/null"]
+CMD [ "tail", "-f", "/dev/null" ]

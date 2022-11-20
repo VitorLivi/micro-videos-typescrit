@@ -4,6 +4,7 @@
   "description": "admin do catálogo de vídeos",
   "main": "index.js",
   "scripts": {
+    "start:dev": "npm run start:dev -w nestjs"
   },
   "author": "",
   "license": "ISC",
