@@ -41,7 +41,7 @@ describe('ListCategoriesUseCase', () => {
       sort_dir: null,
       filter: null
     });
-    
+
     output = useCase['toOutput'](result);
     expect(output).toStrictEqual({
       items: [category.toJSON()],
