@@ -6,7 +6,10 @@
   "scripts": {
     "prestart:dev": "npm run build -w @fc/micro-videos",
     "start:dev": "npm run build:watch -w @fc/micro-videos & start:dev -w nestjs",
-    "test": "jest"
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "tsc": "tsc",
+    "tsc:check": "npm run tsc -- --noEmit"
   },
   "author": "",
   "license": "ISC",
