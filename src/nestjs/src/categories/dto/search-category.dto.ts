@@ -1,5 +1,5 @@
 import { ListCategoriesUseCase } from "@fc/micro-videos/category/application"
-import { SortDirection } from "@fc/micro-videos/dist/shared/domain/repository/repository-contracts"
+import { SortDirection } from "@fc/micro-videos/shared/domain"
 
 export class SearchCategoryDto implements ListCategoriesUseCase.Input {
   page?: number

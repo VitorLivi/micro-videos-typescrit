@@ -29,22 +29,22 @@ export class CategoriesController {
   private listUseCase: ListCategoriesUseCase.UseCase
 
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
+  async create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.createUseCase.execute(createCategoryDto);
   }
 
   @Get()
-  search(@Query searchParams: SearchCategoryDto) {
+  async search(@Query() searchParams: SearchCategoryDto) {
     return this.listUseCase.execute(searchParams);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.getUseCase.execute({ id });
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
+  async update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
     return this.updateUseCase.execute({
       id,
       ...updateCategoryDto
@@ -53,7 +53,7 @@ export class CategoriesController {
 
   @HttpCode(204)
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.deleteUseCase.execute({ id });
   }
 }
