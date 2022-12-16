@@ -1,5 +1,6 @@
 import { Category, CategoryRepository } from "#category/domain";
-import { UniqueEntityId } from "#shared/domain";
+import { NotFoundError, UniqueEntityId } from "#shared/domain";
+import { CategoryModelMapper } from "./category-mapper";
 import { CategoryModel } from "./category-model";
 
 export class CategorySequelizeRepository 
@@ -11,9 +12,21 @@ export class CategorySequelizeRepository
     await this.categoryModel.create(entity.toJSON());
   }
   
-  async findById(id: string | UniqueEntityId): Promise<Category> {}
+  async findById(id: string | UniqueEntityId): Promise<Category> {
+    const _id = `${id}`;
+    const model = await this._get(_id);
+    return CategoryModelMapper.toEntity(model);
+  }
+
   async findAll(): Promise<Category[]> {}
   async update(entity: Category): Promise<void> {}
   async delete(id: string | UniqueEntityId): Promise<void> {}
+
+  private async _get(id: string): Promise<CategoryModel> {
+    return await this.categoryModel.findByPk(id, {
+      rejectOnEmpty: new NotFoundError(`Entity with id ${id} not found`)
+    });
+  }
+
   async search(props: CategoryRepository.SearchParams): Promise<CategoryRepository.SearchResult> {}
 }
