@@ -1,7 +1,7 @@
 import { Category } from "../../../domain/entities/category";
 import { NotFoundError } from "../../../../shared/domain/errors/not-found.error";
-import { CategoryInMemoryRepository } from "../../../infra/repository/category-in-memory.repository";
 import { GetCategoryUseCase } from "../get-category.use-case";
+import {CategoryInMemoryRepository} from "#category/infra/db/in-memory";
 
 describe('GetCategoryUseCase', () => {
   let useCase: GetCategoryUseCase.UseCase;

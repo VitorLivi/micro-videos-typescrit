@@ -1,7 +1,7 @@
 import { Category } from "../../../domain/entities/category";
-import { CategoryInMemoryRepository } from "../../../infra/repository/category-in-memory.repository";
 import { NotFoundError } from "../../../../shared/domain/errors/not-found.error";
 import { DeleteCategoryUseCase } from "../delete-category.use-case";
+import { CategoryInMemoryRepository } from "#category/infra/db/in-memory";
 
 describe ("DeleteCategoryUseCase Unit Tests", () => {
   let useCase: DeleteCategoryUseCase.UseCase;
