@@ -1,4 +1,5 @@
 import { Category } from "#category/domain";
+import {NotFoundError, UniqueEntityId} from "#shared/domain";
 import { Sequelize } from "sequelize-typescript"
 import { CategoryModel } from "../category-model";
 import { CategorySequelizeRepository } from "../category-repository";
@@ -42,4 +43,24 @@ describe("CategorySequelizeRepository", () => {
     model = await CategoryModel.findByPk(category.id)
     expect(model.toJSON()).toStrictEqual(category.toJSON())
   })
+
+  it("should throws error when entity not found", async () => {
+    await expect(repository.findById("fake id")).rejects.toThrow(
+      new NotFoundError("Entity with id fake id not found")
+    )
+
+    await expect(repository.findById(new UniqueEntityId("3c81b600-e040-4fc4-b90d-de4910e52b86"))).rejects.toThrow(new NotFoundError("Entity with id 3c81b600-e040-4fc4-b90d-de4910e52b86 not found"))
+  })
+
+  it("should find an entity by id", async () => {
+    const entity = new Category({name: "Movie"});
+    await repository.insert(entity);
+
+    let foundEntity = await repository.findById(entity.id);
+    expect(foundEntity.toJSON()).toStrictEqual(entity.toJSON());
+
+    foundEntity = await repository.findById(entity.uniqueEntityId);
+    expect(foundEntity.toJSON()).toStrictEqual(entity.toJSON());
+  });
+
 });

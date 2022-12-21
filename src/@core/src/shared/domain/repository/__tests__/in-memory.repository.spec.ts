@@ -24,11 +24,11 @@ describe("InMemoryRepository Unit Tests", () => {
     expect(entity.toJSON()).toStrictEqual(repository.items[0].toJSON());
   });
 
-  it("should throws error when entity not found", () => {
-    expect(repository.findById("invalid-id")).rejects.toThrowError(
+  it("should throws error when entity not found", async () => {
+    await expect(repository.findById("invalid-id")).rejects.toThrowError(
       `Entity with id invalid-id not found`
     );
-    expect(
+    await expect(
       repository.findById(
         new UniqueEntityId("3c81b600-e040-4fc4-b90d-de4910e52b86")
       )
@@ -56,9 +56,9 @@ describe("InMemoryRepository Unit Tests", () => {
     expect(entities).toStrictEqual([entity]);
   });
 
-  it("should thorws error on update when entity not found", () => {
+  it("should thorws error on update when entity not found", async () => {
     const entity = new StubEntity({ name: "test", price: 10 });
-    expect(repository.update(entity)).rejects.toThrowError(
+    await expect(repository.update(entity)).rejects.toThrowError(
       `Entity with id ${entity.id} not found`
     );
   });
@@ -77,12 +77,12 @@ describe("InMemoryRepository Unit Tests", () => {
     expect(foundEntity.toJSON()).toStrictEqual(updatedEntity.toJSON());
   });
 
-  it("should thorws error on delete when entity not found", () => {
+  it("should thorws error on delete when entity not found", async () => {
     const entity = new StubEntity({ name: "test", price: 10 });
-    expect(repository.delete(entity.id)).rejects.toThrowError(
+    await expect(repository.delete(entity.id)).rejects.toThrowError(
       `Entity with id ${entity.id} not found`
     );
-    expect(repository.delete(entity.uniqueEntityId)).rejects.toThrowError(
+    await expect(repository.delete(entity.uniqueEntityId)).rejects.toThrowError(
       `Entity with id ${entity.uniqueEntityId} not found`
     );
   });
