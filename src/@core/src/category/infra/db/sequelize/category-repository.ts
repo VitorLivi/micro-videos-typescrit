@@ -18,7 +18,11 @@ export class CategorySequelizeRepository
     return CategoryModelMapper.toEntity(model);
   }
 
-  async findAll(): Promise<Category[]> {}
+  async findAll(): Promise<Category[]> {
+    const models = await this.categoryModel.findAll();
+    return models.map(CategoryModelMapper.toEntity);
+  }
+
   async update(entity: Category): Promise<void> {}
   async delete(id: string | UniqueEntityId): Promise<void> {}
 

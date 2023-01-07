@@ -63,4 +63,12 @@ describe("CategorySequelizeRepository", () => {
     expect(foundEntity.toJSON()).toStrictEqual(entity.toJSON());
   });
 
+  it("should return all categories", async () => {
+    const entity = new Category({name: "Movie"});
+    await repository.insert(entity);
+    const foundEntities = await repository.findAll();
+    expect(foundEntities).toHaveLength(1);
+    expect(JSON.stringify(foundEntities)).toBe(JSON.stringify([entity]));
+  });
+
 });
