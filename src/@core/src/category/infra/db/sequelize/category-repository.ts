@@ -1,5 +1,6 @@
 import { Category, CategoryRepository } from "#category/domain";
 import { NotFoundError, UniqueEntityId } from "#shared/domain";
+import {Op} from "sequelize";
 import { CategoryModelMapper } from "./category-mapper";
 import { CategoryModel } from "./category-model";
 
@@ -32,5 +33,34 @@ export class CategorySequelizeRepository
     });
   }
 
-  async search(props: CategoryRepository.SearchParams): Promise<CategoryRepository.SearchResult> {}
+  async search(props: CategoryRepository.SearchParams): Promise<CategoryRepository.SearchResult> {
+    const offset = (props.page - 1) * props.per_page;
+    const limit = props.per_page;
+
+    const {
+      rows: models,
+      count
+    } = await this.categoryModel.findAndCountAll({
+      ...(props.filter && {where: {name: {[Op.like]: `%${props.filter}%`}}}),
+      ...(props.sort && this.sortableFields.includes(props.sort) 
+      ? {
+        order: [[props.sort, props.sort_dir]]
+      } 
+      : {
+        order: [["created_at", "DESC"]]
+      }),
+      offset,
+      limit,
+    })
+
+    return new CategoryRepository.SearchResult({
+      items: models.map(CategoryModelMapper.toEntity),
+      current_page: props.page,
+      per_page: props.per_page,
+      total: count,
+      filter: props.filter,
+      sort: props.sort,
+      sort_dir: props.sort_dir,
+    })
+  }
 }
