@@ -71,4 +71,8 @@ describe("CategorySequelizeRepository", () => {
     expect(JSON.stringify(foundEntities)).toBe(JSON.stringify([entity]));
   });
 
+  it("search", async () => {
+    await CategoryModel.factory().create()
+  });
+
 });
